@@ -52,11 +52,20 @@ cs('#filtros button').forEach(btn => {
     });
 });
 
-renderProdutos();
+renderProdutos('all');
 
-document.querySelectorAll('.filters button').forEach(btn => {
+// Marca o botão "Todos" como ativo ao carregar
+cs('.filters button').forEach(btn => {
+    if (btn.getAttribute('data-cat') === 'all') {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+  
+cs('.filters button').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+      cs('.filters button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
   
       const categoria = btn.getAttribute('data-cat');
