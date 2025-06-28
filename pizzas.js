@@ -6,5 +6,6 @@ let pizzaJson = [
     {id:5, name:'Budweiser', img:'images/Budweiser.png',category: "cerveja", price:21.43, sizes:['', '', ''], description:''},
     {id:6, name:'Coca-Cola', img:'images/coca.png',category: "refrigerante", price:25.43, sizes:['', '', ''], description:''},
     {id:7, name:'Coca-Cola Zero', img:'images/coca_zero.png',category: "refrigerante", price:20.43, sizes:['', '', ''], description:''},
-    {id:8, name:'Água Mineral', img:'images/agua.png',category: "refrigerante", price:20.43, sizes:['', '', ''], description:''}
+    {id:8, name:'Água Mineral', img:'images/agua.png',category: "refrigerante", price:20.43, sizes:['', '', ''], description:''},
+    {id:9, name:'Amstel', img:'images/amstel.png',category: "cerveja", price:20.43, sizes:['', '', ''], description:''}
 ];
