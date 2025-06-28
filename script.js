@@ -5,47 +5,64 @@ let modalKey = 0;
 const c = (el)=>document.querySelector(el);
 const cs = (el)=>document.querySelectorAll(el);
 
-pizzaJson.map((item, index)=>{
-    let pizzaItem = c('.models .pizza-item').cloneNode(true);
-
-    pizzaItem.setAttribute('data-key', index);
-    pizzaItem.querySelector('.pizza-item--img img').src = item.img;
-    pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}`;
-    pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name;
-    pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
-    pizzaItem.querySelector('a').addEventListener('click', (e)=>{
+function renderProdutos(categoria = "all") {
+    c('.pizza-area').innerHTML = ''; // limpa antes de renderizar
+  
+    pizzaJson.forEach((item, index) => {
+      if (categoria !== "all" && item.category !== categoria) return;
+  
+      let pizzaItem = c('.models .pizza-item').cloneNode(true);
+      pizzaItem.setAttribute('data-key', index);
+      pizzaItem.querySelector('.pizza-item--img img').src = item.img;
+      pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${item.price.toFixed(2)}`;
+      pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name;
+      pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
+  
+      pizzaItem.querySelector('a').addEventListener('click', (e) => {
         e.preventDefault();
         let key = e.target.closest('.pizza-item').getAttribute('data-key');
         modalQt = 1;
         modalKey = key;
-
+  
         c('.pizzaBig img').src = pizzaJson[key].img;
         c('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
         c('.pizzaInfo--desc').innerHTML = pizzaJson[key].description;
         c('.pizzaInfo--actualPrice').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2)}`;
+  
         c('.pizzaInfo--size.selected').classList.remove('selected');
-        cs('.pizzaInfo--size').forEach((size, sizeIndex)=>{
-            if(sizeIndex == 2){
-                size.classList.add('selected');
-            }
-            size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex];
-
+        cs('.pizzaInfo--size').forEach((size, sizeIndex) => {
+          if (sizeIndex == 2) size.classList.add('selected');
+          size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex];
         });
-
+  
         c('.pizzaInfo--qt').innerHTML = modalQt;
-
         c('.pizzaWindowArea').style.opacity = 0;
         c('.pizzaWindowArea').style.display = 'flex';
-        setTimeout(()=>{
-            c('.pizzaWindowArea').style.opacity = 1;
-        }, 200);
-        
-        
+        setTimeout(() => c('.pizzaWindowArea').style.opacity = 1, 200);
+      });
+  
+      c('.pizza-area').append(pizzaItem);
     });
-    
-
-    c('.pizza-area').append(pizzaItem);
+  }
+  
+cs('#filtros button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const categoria = btn.getAttribute('data-cat');
+      renderProdutos(categoria);
+    });
 });
+
+renderProdutos();
+
+document.querySelectorAll('.filters button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+  
+      const categoria = btn.getAttribute('data-cat');
+      renderProdutos(categoria);
+    });
+  });
 
 //EVENTOS MODAL
 function closeModal(){
