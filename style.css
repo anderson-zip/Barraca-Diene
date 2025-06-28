@@ -6,29 +6,16 @@ body {
     font-family:'Lato',Helvetica,Arial;
     font-size:15px;
     display:flex;
-    flex-direction: column;
-    align-items: center;   /* centraliza horizontalmente */
-    justify-content: flex-start; /* ou center para vertical */
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
+    margin:0;
+    min-height:100vh;
 }
-
-body h1{
-    padding-top: 50px;
+.models {
+    display:none;
 }
-
-.filters {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 20px 0;
-    padding-top: 15px;
-  }
-  
-  .filters button {
+.filters{
+    margin-bottom: 30px;
+}
+.filters button {
     background-color: #007BFF;
     color: #fff;
     border: none;
@@ -48,11 +35,7 @@ body h1{
   .filters button.active {
     background-color: #28a745;
   }
-
-.models {
-    display:none;
-}
-
+  
 header {
     position: fixed;
     left:0;
@@ -110,7 +93,6 @@ h1 {
     max-width:250px;
     font-family:'Hepta Slab', Helvetica, Arial;
     margin:0 auto 50px auto;
-    margin-left: 30px;
 }
 .pizza-item a {
     display:flex;
@@ -360,8 +342,7 @@ h1 {
     height: 35px;
     width: 100%;
     padding: 10px;
-    color:#000;
-    font-weight: bold;
+    text-decoration: solid;
     border-radius: 10px;
 
 }
