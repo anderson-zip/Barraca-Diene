@@ -150,9 +150,9 @@ finalizarBtn.addEventListener('click', function () {
     console.log('CPF:', cpf);
     // Aqui você pode chamar sua função de envio para o WhatsApp, etc.
     let mensagem = `
-============================
-    🛒 PEDIDO CONFIRMADO
-============================
+=======================
+🛒 PEDIDO CONFIRMADO
+=======================
 
 👤Nome: *${nome}*
 🆔CPF: ${cpf}\n\n`;
