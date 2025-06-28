@@ -172,13 +172,14 @@ finalizarBtn.addEventListener('click', function () {
 =======================
 
 👤Nome: *${nome}*
-🆔CPF: ${cpf}\n\n`;
+🆔CPF: ${cpf}\n\n
+📦 *Itens*:\n`;
 
     let total = 0;
     for(let i in cart){
         let carItem = pizzaJson.find((item)=>item.id == cart[i].id);
         console.log(carItem);
-        mensagem += `📦 *Itens*:\n• ${carItem.name} (x${cart[i].qt}) - R$ ${(carItem.price * cart[i].qt).toFixed(2)}\n`;
+        mensagem += `• ${carItem.name} (x${cart[i].qt}) - R$ ${(carItem.price * cart[i].qt).toFixed(2)}\n`;
         total +=carItem.price * cart[i].qt;
         
     }
